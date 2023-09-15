@@ -8,6 +8,7 @@ export async function POST(request) {
     try{
         const body = await request.json();
         const { mentee_email, mentee_password } = body;
+        console.log(body)
         console.log( mentee_email)
 
         const user = await pool.query('SELECT * FROM mentee WHERE mentee_email = $1', [mentee_email])
