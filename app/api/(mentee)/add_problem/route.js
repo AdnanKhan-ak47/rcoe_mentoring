@@ -1,11 +1,14 @@
 import { NextResponse } from 'next/server'
 import pool from '@/app/db/db'
 const CryptoJS = require("crypto-js")
+const jwt = require('jsonwebtoken')
 
 export async function POST(request) {
     try{
         const body = await request.json()
-        const {problem_title, problem_description, mentee_id} = body
+        const {problem_title, problem_description, token} = body
+
+        const mentee_id = jwt.verify(token, process.env.JWT_SECRET).user.id
 
         const date = new Date()
         const date_start = date.toLocaleDateString("en-GB")

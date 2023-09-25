@@ -25,7 +25,7 @@ export async function POST(request) {
 
         const data = {
             user: {
-                id: user.rows[0]['mentor_id']
+                id: user.rows[0]['mentee_id']
             }
         }
         const authtoken = jwt.sign(data, process.env.JWT_SECRET);

@@ -14,7 +14,7 @@ const MentorLogin = () => {
     useEffect(() => {
         const user = localStorage.getItem('user')
         if(user){
-            router.push('/')
+            router.push('/dashboard')
         }
     }, [])
 
