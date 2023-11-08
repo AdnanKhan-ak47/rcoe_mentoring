@@ -23,7 +23,9 @@ export async function POST(request) {
 
         const data = {
             user: {
-                id: user.rows[0]['mentor_id']
+                id: user.rows[0]['mentor_id'],
+                email: user.rows[0]['mentor_email'],
+                name: user.rows[0]['mentor_name']
             }
         }
         const authtoken = jwt.sign(data, process.env.JWT_SECRET);

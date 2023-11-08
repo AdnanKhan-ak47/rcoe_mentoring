@@ -12,7 +12,7 @@ export async function POST(request) {
         console.log( mentee_email)
 
         const user = await pool.query('SELECT * FROM mentee WHERE mentee_email = $1', [mentee_email])
-        // console.log(user)
+        console.log(user)
         if(user.rows.length == 0){
             return NextResponse.json({error: "User does not Exists."}, {status: 400})
         }
@@ -22,21 +22,29 @@ export async function POST(request) {
         if(decrypted_pass != mentee_password){
             return NextResponse.json({error: "Incorrect Password! Try again!"}, {status: 400})
         }
+        const isMentorAssigned = (user.rows[0]['mentor_id'] == null) ? false : true ;
 
         const data = {
             user: {
-                id: user.rows[0]['mentee_id']
+                id: user.rows[0]['mentee_id'],
+                email: user.rows[0]['mentee_email'],
+                name: user.rows[0]['mentee_name']
             }
         }
         const authtoken = jwt.sign(data, process.env.JWT_SECRET);
 
-
+        
         return NextResponse.json(
             {
                 success: true,
                 message: "User Logged in Successfully",
                 status: 200,
-                authtoken
+                authtoken,
+                user: {
+                    name: user.rows[0]['mentee_name'],
+                    email: user.rows[0]['mentee_email'],
+                    isMentorAssigned: isMentorAssigned
+                }
             }
         )
     }

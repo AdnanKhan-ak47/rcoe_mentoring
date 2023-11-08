@@ -1,4 +1,4 @@
-import Navbar from './_components/navbar'
+// import Navbar from './_components/navbar'
 import ProblemState from './_context/problems/ProblemState'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
+        {/* <Navbar /> */}
         <ProblemState>
           {children}
         </ProblemState>

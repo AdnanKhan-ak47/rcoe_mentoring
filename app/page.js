@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 
 export default function Home() {
   const router = useRouter()
+  localStorage.theme = 'light'
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'))

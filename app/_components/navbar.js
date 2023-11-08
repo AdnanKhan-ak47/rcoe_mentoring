@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
+import AccountDropdown from './Dropdown';
 
 const Navbar = () => {
+
+    
     return (
         <nav>
             <div className='flex justify-between p-4 bg-[#1C6758] text-gray-300 '>
@@ -21,9 +24,10 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-                <div className=''>
+                {/* <div className=''>
                     <span className='hover:text-[#EB6440] focus:border-b-[0.2em] rounded-b-md border-b-orange-500 pb-[0.9em]'>Account</span>
-                </div>
+                </div> */}
+                <AccountDropdown className='' />
             </div>
         </nav>
     )
